@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><meta content="mobile_stack" name="shell-type"><title>PillTwin</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "inverse-surface": "#30312f", "error-container": "#ffdad6", "surface": "#fbf9f6", "background": "#fbf9f6", "surface-container-high": "#eae8e5", "surface-dim": "#dbdad7", "tertiary-fixed": "#95f8a7", "secondary": "#99462b", "secondary-fixed-dim": "#ffb59e", "on-primary-container": "#a3faef", "primary": "#005c55", "on-secondary-fixed-variant": "#7a2f16", "tertiary-container": "#087a38", "on-surface": "#1b1c1a", "surface-variant": "#e4e2df", "on-tertiary-fixed-variant": "#005323", "surface-bright": "#fbf9f6", "on-tertiary-container": "#a3ffb2", "on-secondary-fixed": "#3a0a00", "on-background": "#1b1c1a", "on-primary": "#ffffff", "on-surface-variant": "#3e4947", "surface-container-highest": "#e4e2df", "on-secondary": "#ffffff", "on-primary-fixed-variant": "#00504a", "error": "#ba1a1a", "primary-container": "#0f766e", "on-tertiary-fixed": "#00210a", "surface-container-lowest": "#ffffff", "outline-variant": "#bdc9c6", "surface-container-low": "#f5f3f0", "on-error-container": "#93000a", "surface-tint": "#006a63", "primary-fixed-dim": "#80d5cb", "secondary-fixed": "#ffdbd0", "on-primary-fixed": "#00201d", "tertiary-fixed-dim": "#79db8d", "outline": "#6e7977", "secondary-container": "#fe9574", "on-secondary-container": "#762c13", "surface-container": "#efeeeb", "inverse-on-surface": "#f2f0ed", "primary-fixed": "#9cf2e8", "on-tertiary": "#ffffff", "on-error": "#ffffff", "tertiary": "#005f29", "inverse-primary": "#80d5cb" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "1rem", "space-lg": "1.5rem", "space-xs": "0.5rem", "space-md": "1rem", "space-xl": "2rem", "gutter": "1rem", "space-sm": "0.75rem" }, fontFamily: { "label-md": ["Inter"], "title-md": ["Inter"], "body-lg-bold": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["Inter"], "body-lg": ["Inter"], "headline-lg-mobile": ["Inter"] }, fontSize: { "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }], "title-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }], "body-lg-bold": ["16px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "600" }], "headline-lg": ["34px", { lineHeight: "42px", letterSpacing: "-0.02em", fontWeight: "700" }], "label-sm": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500" }], "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" }], "headline-lg-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;background-color:#fbf9f6;color:#1b1c1a;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-lg text-body-lg text-on-surface flex flex-col min-h-screen antialiased"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] pt-safe"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="Go Back" class="w-12 h-12 flex items-center justify-center text-on-surface rounded-full hover:bg-surface-container active:scale-95 transition-all" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><h1 class="font-title-md text-title-md font-semibold text-on-surface tracking-tight truncate max-w-[170px]">Scan</h1></div><div class="flex items-center gap-space-xs"><button aria-label="Change Language" class="min-h-[44px] min-w-[44px] px-space-xs flex items-center justify-center text-primary font-label-md text-label-md rounded-xl hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-[20px] mr-1">translate</span><span class="text-xs">HI/EN</span></button></div></div></header><main class="flex-1 flex flex-col w-full max-w-[390px] mx-auto pt-16 pb-safe bg-surface"><div class="flex-1 flex flex-col w-full text-on-surface">
+<div class="relative w-full flex-1 overflow-hidden bg-slate-900 shadow-xl flex flex-col justify-between" style="min-height: calc(-64px + 100vh);">
+<div class="absolute inset-0 z-0 bg-cover bg-center opacity-70" data-alt="A top-down view of a medicine blister foil strip resting on a warm wooden pharmacy desk under soft natural interior daylight. Macro lens depth of field with subtle ambient lighting, cinematic teal undertones, realistic textures of silver foil packaging with printed chemical salt names, clean and sharp medical context." style="background: linear-gradient(rgb(24, 32, 38) 0%, rgb(15, 23, 28) 100%);">
+</div>
+<!-- Soft Dark Camera Vignette & Scrims -->
+<div class="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/20 to-slate-950/90 pointer-events-none z-10"></div>
+<!-- Live Scanner Laser Ray Animation -->
+<div class="absolute inset-x-8 top-1/4 h-32 pointer-events-none z-10 overflow-hidden flex flex-col items-center">
+<div class="w-full h-0.5 bg-gradient-to-r from-transparent via-primary-fixed to-transparent opacity-80 animate-pulse"></div>
+</div>
+<!-- Top Overlay Controls -->
+<div class="relative z-20 flex flex-col gap-space-sm p-space-md">
+<!-- Top Action Bar -->
+<div class="flex items-center justify-between">
+<button aria-label="Close viewfinder" class="w-12 h-12 rounded-full bg-slate-950/60 backdrop-blur-md flex items-center justify-center text-on-primary active:scale-95 transition-transform" id="close-scan-btn" type="button">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+<div class="flex items-center gap-space-xs">
+<!-- Flip Camera -->
+<button aria-label="Flip camera lens" class="w-12 h-12 rounded-full bg-slate-950/60 backdrop-blur-md flex items-center justify-center text-on-primary active:scale-95 transition-transform" id="flip-camera-btn" type="button">
+<span class="material-symbols-outlined text-[24px]">flip_camera_ios</span>
+</button>
+<!-- Upload Photo Gallery CTA -->
+<button class="h-12 px-space-md rounded-full bg-slate-950/60 backdrop-blur-md flex items-center gap-space-xs text-on-primary active:scale-95 transition-transform" id="gallery-btn" type="button">
+<span class="material-symbols-outlined text-[20px] text-primary-fixed">photo_library</span>
+<span class="font-label-md text-label-md">Upload</span>
+</button>
+</div>
+</div>
+<!-- Real-time Quality Diagnostics Chips -->
+<div class="flex items-center justify-between gap-space-xs overflow-x-auto py-1">
+<!-- Chip 1: Light -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed">wb_sunny</span>
+<span class="font-label-sm text-label-sm text-on-primary whitespace-nowrap">Light: Good</span>
+</div>
+<!-- Chip 2: Sharpness -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="material-symbols-outlined text-[16px] text-secondary-container">filter_center_focus</span>
+<span class="font-label-sm text-label-sm text-on-primary whitespace-nowrap">Sharpness: Check</span>
+</div>
+<!-- Chip 3: Glare -->
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span>
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-on-primary whitespace-nowrap">Glare: Good</span>
+</div>
+</div>
+</div>
+<!-- Central Viewfinder Bounding Box -->
+<div class="relative z-20 flex flex-col items-center justify-center px-space-md my-auto">
+<!-- Framing Instruction Badge -->
+<div class="mb-3 px-space-md py-1.5 rounded-full bg-slate-950/75 backdrop-blur-md text-center shadow-sm">
+<p class="font-label-md text-label-md text-on-primary">Fit the medicine name inside the frame</p>
+</div>
+<!-- Viewfinder Reticle Frame -->
+<div class="relative w-full max-w-[326px] h-64 rounded-2xl bg-primary/5 flex items-center justify-center">
+<!-- 4 Thick Precision Corner Guides -->
+<div class="absolute -top-1 -left-1 w-6 h-6 rounded-tl-xl bg-primary-fixed"></div>
+<div class="absolute -top-1 -right-1 w-6 h-6 rounded-tr-xl bg-primary-fixed"></div>
+<div class="absolute -bottom-1 -left-1 w-6 h-6 rounded-bl-xl bg-primary-fixed"></div>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-br-xl bg-primary-fixed"></div>
+<!-- Inner Mask Cutout -->
+<div class="absolute inset-1 rounded-xl bg-transparent flex items-center justify-center pointer-events-none">
+<!-- Subtle Center Target Crosshair -->
+<div class="w-6 h-0.5 bg-primary-fixed/40"></div>
+<div class="h-6 w-0.5 bg-primary-fixed/40 absolute"></div>
+</div>
+<!-- Dynamic pill indicator showing generic vs brand salt area -->
+
+</div>
+<!-- Assistance / Guidance Tip Banner -->
+<div class="mt-4 flex items-center gap-space-xs px-space-md py-2 rounded-xl bg-secondary-fixed/90 text-on-secondary-fixed shadow-sm">
+<span class="material-symbols-outlined text-[20px] text-secondary">screen_rotation</span>
+<span class="font-label-sm text-label-sm font-semibold">Tilt the strip to avoid foil reflections</span>
+</div>
+</div>
+<!-- Bottom Capture Control Panel -->
+<div class="relative z-20 flex flex-col items-center pb-space-lg pt-space-xs px-space-md">
+<!-- Hand Steadiness & Distance Tooltip -->
+<div class="mb-4 flex items-center gap-1.5 px-space-md py-1 rounded-full bg-slate-950/70 backdrop-blur-md">
+<span class="material-symbols-outlined text-[16px] text-tertiary-fixed">pan_tool</span>
+<span class="font-label-sm text-label-sm text-on-primary">Hold steady and avoid shiny glare</span>
+</div>
+<!-- Shutter Row with Modes -->
+<div class="w-full flex items-center justify-around max-w-[320px]">
+<!-- Flash Toggle Utility Button -->
+<button aria-label="Toggle flashlight" class="w-12 h-12 rounded-full bg-slate-950/60 backdrop-blur-md flex items-center justify-center text-on-primary active:scale-95 transition-transform" id="torch-btn" type="button">
+<span class="material-symbols-outlined text-[22px]" id="torch-icon">flash_on</span>
+</button>
+<!-- Big 72px Circular Shutter Trigger -->
+<button aria-label="Capture medicine scan" class="relative w-20 h-20 rounded-full bg-primary-container p-1 shadow-lg active:scale-90 transition-transform flex items-center justify-center group" id="capture-shutter-btn" type="button">
+<!-- Outer Pulsing Halo -->
+<span class="absolute inset-0 rounded-full bg-primary-fixed opacity-30 group-active:scale-110 transition-transform"></span>
+<!-- Inner Core Button -->
+<span class="w-16 h-16 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-inner">
+<span class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px] text-on-primary">photo_camera</span>
+</span>
+</span>
+</button>
+<!-- History/Prescription Quick Access -->
+<button aria-label="Previous prescriptions" class="w-12 h-12 rounded-full bg-slate-950/60 backdrop-blur-md flex items-center justify-center text-on-primary active:scale-95 transition-transform" id="history-btn" type="button">
+<span class="material-symbols-outlined text-[22px]">receipt_long</span>
+</button>
+</div>
+<!-- Offline / Data Dignity Assurance -->
+<div class="mt-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">verified_user</span>
+<span class="font-label-sm text-label-sm text-outline-variant">Your photo is not stored.</span>
+</div>
+</div>
+</div>
+<!-- Interactive Client Behavior Scripts -->
+<script>
+    (function initViewfinderInteractions() {
+      const shutterBtn = document.getElementById('capture-shutter-btn');
+      const torchBtn = document.getElementById('torch-btn');
+      const torchIcon = document.getElementById('torch-icon');
+      const flipBtn = document.getElementById('flip-camera-btn');
+      const closeBtn = document.getElementById('close-scan-btn');
+      let isTorchActive = false;
+
+      if (shutterBtn) {
+        shutterBtn.addEventListener('click', () => {
+          shutterBtn.classList.add('scale-90');
+          setTimeout(() => {
+            shutterBtn.classList.remove('scale-90');
+          }, 150);
+        });
+      }
+
+      if (torchBtn && torchIcon) {
+        torchBtn.addEventListener('click', () => {
+          isTorchActive = !isTorchActive;
+          if (isTorchActive) {
+            torchBtn.classList.add('bg-primary');
+            torchBtn.classList.remove('bg-slate-950/60');
+            torchIcon.textContent = 'flash_off';
+          } else {
+            torchBtn.classList.remove('bg-primary');
+            torchBtn.classList.add('bg-slate-950/60');
+            torchIcon.textContent = 'flash_on';
+          }
+        });
+      }
+
+      if (flipBtn) {
+        flipBtn.addEventListener('click', () => {
+          flipBtn.classList.add('rotate-180');
+          setTimeout(() => flipBtn.classList.remove('rotate-180'), 300);
+        });
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          if (window.history && window.history.length > 1) {
+            window.history.back();
+          }
+        });
+      }
+    })();
+  </script>
+</div></main>
+
+</body></html>

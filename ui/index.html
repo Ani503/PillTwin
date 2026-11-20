@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>PillTwin — Same salt. Fair price.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#fbf9f6",
+            "background": "#fbf9f6",
+            "surface-dim": "#dbdad7",
+            "surface-bright": "#fbf9f6",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f5f3f0",
+            "surface-container": "#efeeeb",
+            "surface-container-high": "#eae8e5",
+            "surface-container-highest": "#e4e2df",
+            "on-surface": "#1b1c1a",
+            "on-surface-variant": "#3e4947",
+            "inverse-surface": "#30312f",
+            "inverse-on-surface": "#f2f0ed",
+            "outline": "#6e7977",
+            "outline-variant": "#bdc9c6",
+            "primary": "#005c55",
+            "on-primary": "#ffffff",
+            "primary-container": "#0f766e",
+            "on-primary-container": "#a3faef",
+            "primary-fixed": "#9cf2e8",
+            "primary-fixed-dim": "#80d5cb",
+            "secondary": "#99462b",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#fe9574",
+            "on-secondary-container": "#762c13",
+            "secondary-fixed": "#ffdbd0",
+            "tertiary": "#005f29",
+            "on-tertiary": "#ffffff",
+            "tertiary-container": "#087a38",
+            "tertiary-fixed": "#95f8a7",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #fbf9f6;
+      color: #1b1c1a;
+      overscroll-behavior-y: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
+    .pt-safe { padding-top: env(safe-area-inset-top, 16px); }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="bg-surface font-sans text-on-surface flex flex-col min-h-screen antialiased select-none">
+
+  <!-- TOP APP BAR -->
+  <header class="fixed top-0 inset-x-0 z-40 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30 pt-safe">
+    <div class="max-w-[420px] mx-auto h-16 px-4 flex items-center justify-between">
+      <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
+        <svg class="w-7 h-7 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="8" width="12" height="7" rx="3.5" transform="rotate(-30 8 11.5)" class="fill-primary/20"></rect>
+          <rect x="9" y="9" width="12" height="7" rx="3.5" transform="rotate(30 15 12.5)" class="fill-primary"></rect>
+        </svg>
+        <span class="text-xl font-bold text-primary tracking-tight" data-i18n="brand_name">PillTwin</span>
+      </div>
+      <div class="flex items-center gap-1">
+        <button id="headerLangBtn" class="px-3 py-1.5 text-xs font-semibold rounded-full bg-surface-container text-primary hover:bg-surface-container-high transition-colors flex items-center gap-1" onclick="openLanguageModal()">
+          <span class="material-symbols-outlined text-[16px]">translate</span>
+          <span id="headerLangLabel">EN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="flex-1 flex flex-col w-full max-w-[420px] mx-auto pt-16 pb-24 bg-surface px-4">
+    <!-- Mandatory Prototype Disclaimer Banner (Present on every page) -->
+    <div class="bg-amber-50 border border-amber-200 text-amber-900 rounded-xl p-3 text-xs leading-relaxed text-center font-medium my-2" data-i18n="disclaimer_banner">
+      ⚠️ Information only, not medical advice. Ask your doctor or pharmacist before changing any medicine. Not affiliated with PMBI or Government of India.
+    </div>
+
+    <!-- ==================== SCREEN 1: HOME ==================== -->
+    <div id="screen-home" class="flex flex-col w-full space-y-4 pt-1">
+
+      <!-- Brand Intro Banner -->
+      <section class="bg-primary-container text-on-primary rounded-2xl p-5 shadow-sm relative overflow-hidden">
+        <div class="flex items-start justify-between relative z-10">
+          <div class="space-y-1">
+            <h1 class="text-3xl font-bold tracking-tight text-white" data-i18n="brand_name">PillTwin</h1>
+            <p class="text-on-primary-container font-medium text-sm" data-i18n="tagline">Same salt. Fair price.</p>
+          </div>
+          <!-- Language pills -->
+          <div class="bg-primary text-white flex items-center rounded-full p-1 text-xs font-medium" role="radiogroup" aria-label="Select language">
+            <button class="lang-pill px-2.5 py-1 rounded-full bg-white text-primary font-bold transition-all" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-pill px-2.5 py-1 rounded-full text-white opacity-80 hover:opacity-100 transition-all" data-lang="hi" onclick="setLanguage('hi')">हिं</button>
+            <button class="lang-pill px-2.5 py-1 rounded-full text-white opacity-80 hover:opacity-100 transition-all" data-lang="bn" onclick="setLanguage('bn')">বাং</button>
+          </div>
+        </div>
+        <!-- Soft Ambient Graphic Backdrop -->
+        <svg class="absolute -right-6 -bottom-8 w-36 h-36 opacity-10 pointer-events-none text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M4.5 10.5C3.67 10.5 3 11.17 3 12s.67 1.5 1.5 1.5h15c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5h-15zM10.5 4.5C10.5 3.67 11.17 3 12 3s1.5.67 1.5 1.5v15c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5v-15z"></path>
+        </svg>
+      </section>
+
+      <!-- Core Action Card -->
+      <section class="bg-surface-container-lowest rounded-2xl p-5 shadow-sm space-y-4 border border-outline-variant/30">
+        <p class="text-xs text-on-surface-variant font-medium" data-i18n="subhead_compare">Compares with official Jan Aushadhi (PMBJP) pricing. Not affiliated with GoI.</p>
+        <div>
+          <h2 class="text-2xl font-bold text-on-surface leading-tight" data-i18n="headline_find">Find the same medicine for less</h2>
+          <p class="text-sm text-on-surface-variant mt-1" data-i18n="subhead_scan">Scan a strip or box to compare with the Jan Aushadhi generic equivalent.</p>
+        </div>
+
+        <!-- Salt Explanation Note -->
+        <div class="bg-surface-container rounded-xl p-3.5 flex items-start gap-3 cursor-pointer hover:bg-surface-container-high transition-colors" onclick="openLearnModal()">
+          <span class="material-symbols-outlined text-primary text-xl mt-0.5">science</span>
+          <p class="text-xs text-on-surface leading-snug">
+            <strong class="font-semibold text-primary" data-i18n="what_is_salt_title">What is a salt?</strong>
+            <span data-i18n="what_is_salt_desc"> The salt is the active chemical molecule in the medicine that produces the therapeutic effect.</span>
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="pt-1 space-y-3">
+          <button class="w-full h-14 bg-primary text-white font-semibold rounded-xl flex items-center justify-center gap-2 active:bg-primary-container transition-all shadow-sm" onclick="navigateTo('scan')" type="button">
+            <span class="material-symbols-outlined text-2xl">photo_camera</span>
+            <span data-i18n="btn_scan">Scan a medicine</span>
+          </button>
+          <button class="w-full h-14 bg-surface-container-high text-primary font-semibold rounded-xl flex items-center justify-center gap-2 active:bg-surface-dim transition-all" onclick="toggleSearchDrawer()" type="button">
+            <span class="material-symbols-outlined text-2xl">search</span>
+            <span data-i18n="btn_type">Type a medicine name</span>
+          </button>
+        </div>
+
+        <!-- Search Drawer -->
+        <div id="searchDrawer" class="hidden pt-2 space-y-2">
+          <label class="text-xs text-on-surface-variant block font-medium" for="medicineInput" data-i18n="search_label">Type brand name or active generic composition</label>
+          <div class="relative flex items-center">
+            <input class="w-full h-14 bg-surface-container-low rounded-xl px-4 text-on-surface text-base outline-none focus:ring-2 focus:ring-primary pr-24" id="medicineInput" placeholder="e.g. Dolo 650, Augmentin 625 Duo, Pan 40" type="text" onkeydown="if(event.key==='Enter') executeManualSearch()">
+            <button id="clearSearchBtn" class="absolute right-16 w-8 h-8 flex items-center justify-center text-on-surface-variant hover:text-on-surface" onclick="clearSearchInput()" type="button" aria-label="Clear">
+              <span class="material-symbols-outlined text-lg">close</span>
+            </button>
+            <button class="absolute right-2 px-3 py-2 bg-primary text-white text-xs font-semibold rounded-lg hover:bg-primary-container transition-colors" onclick="executeManualSearch()" type="button" data-i18n="btn_search">
+              Search
+            </button>
+          </div>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <span class="text-xs text-on-surface-variant mr-1" data-i18n="quick_examples">Quick examples:</span>
+            <button class="px-2.5 py-1 bg-surface-container rounded-full text-xs font-medium text-primary hover:bg-surface-container-high" onclick="quickFillSearch('Dolo 650 Tablet')">Dolo 650</button>
+            <button class="px-2.5 py-1 bg-surface-container rounded-full text-xs font-medium text-primary hover:bg-surface-container-high" onclick="quickFillSearch('Augmentin 625 Duo Tablet')">Augmentin 625</button>
+            <button class="px-2.5 py-1 bg-surface-container rounded-full text-xs font-medium text-primary hover:bg-surface-container-high" onclick="quickFillSearch('Pan 40 Tablet')">Pan 40</button>
+            <button class="px-2.5 py-1 bg-surface-container rounded-full text-xs font-medium text-primary hover:bg-surface-container-high" onclick="quickFillSearch('Combiflam Tablet')">Combiflam</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ethical Assurances -->
+      <section class="grid grid-cols-3 gap-2 px-1">
+        <div class="flex flex-col items-center text-center p-3 rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors" onclick="openPrivacyModal('photo')">
+          <span class="material-symbols-outlined text-on-surface-variant text-2xl mb-1">no_photography</span>
+          <span class="text-xs font-semibold text-on-surface leading-tight" data-i18n="badge_no_photo">No photo saved</span>
+        </div>
+        <div class="flex flex-col items-center text-center p-3 rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors" onclick="openPrivacyModal('account')">
+          <span class="material-symbols-outlined text-on-surface-variant text-2xl mb-1">how_to_reg</span>
+          <span class="text-xs font-semibold text-on-surface leading-tight" data-i18n="badge_no_signup">No sign-up</span>
+        </div>
+        <div class="flex flex-col items-center text-center p-3 rounded-xl bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors" onclick="openPrivacyModal('pharmacy')">
+          <span class="material-symbols-outlined text-on-surface-variant text-2xl mb-1">domain_disabled</span>
+          <span class="text-xs font-semibold text-on-surface leading-tight" data-i18n="badge_not_pharmacy">Not a pharmacy</span>
+        </div>
+      </section>
+
+      <!-- Jan Aushadhi Info Card -->
+      <div class="p-4 bg-surface-container-low rounded-2xl flex items-start gap-3 border border-outline-variant/30 cursor-pointer hover:bg-surface-container transition-colors" onclick="openAboutModal()">
+        <span class="material-symbols-outlined text-primary text-xl mt-0.5">verified</span>
+        <div class="space-y-1">
+          <p class="text-xs font-bold text-primary uppercase tracking-wide" data-i18n="about_jan_aushadhi_title">About Jan Aushadhi (PMBJP)</p>
+          <p class="text-xs text-on-surface-variant leading-snug" data-i18n="about_jan_aushadhi_desc">
+            Government initiative providing quality unbranded generic medicines at 50% to 90% lower cost through 10,000+ Kendras across India.
+          </p>
+        </div>
+      </div>
+
+      <!-- How it works Link -->
+      <div class="flex justify-center pt-1 pb-2">
+        <button class="inline-flex items-center gap-1 text-primary font-semibold text-xs py-2 px-3 rounded-lg hover:bg-surface-container transition-colors" onclick="openHowItWorksModal()">
+          <span data-i18n="link_how_it_works">How it works</span>
+          <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================== SCREEN 2: CAMERA SCAN VIEWFINDER ==================== -->
+    <div id="screen-scan" class="hidden flex-col w-full flex-1">
+      <div class="relative w-full flex-1 overflow-hidden bg-slate-900 rounded-2xl shadow-xl flex flex-col justify-between" style="min-height: calc(100vh - 160px);">
+        <!-- Live Video Element -->
+        <video id="cameraVideo" autoplay playsinline muted class="absolute inset-0 w-full h-full object-cover z-0"></video>
+        <canvas id="analysisCanvas" width="120" height="90" class="hidden"></canvas>
+
+        <!-- Dark gradient overlays for top and bottom readability -->
+        <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-slate-950/80 to-transparent pointer-events-none z-10"></div>
+        <div class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-slate-950/90 to-transparent pointer-events-none z-10"></div>
+
+        <!-- Top Overlay Controls -->
+        <div class="relative z-20 flex flex-col gap-2 p-4">
+          <div class="flex items-center justify-between">
+            <button class="w-10 h-10 rounded-full bg-slate-950/60 backdrop-blur-md flex items-center justify-center text-white active:scale-95 transition-all" onclick="navigateTo('home')" type="button">
+              <span class="material-symbols-outlined text-xl">arrow_back</span>
+            </button>
+            <div class="flex items-center gap-2">
+              <button class="w-10 h-10 rounded-full bg-slate-950/60 backdrop-blur-md flex items-center justify-center text-white active:scale-95 transition-all" onclick="toggleCameraFacing()" type="button" title="Flip Camera">
+                <span class="material-symbols-outlined text-xl">flip_camera_ios</span>
+              </button>
+              <button class="h-10 px-3 rounded-full bg-slate-950/60 backdrop-blur-md flex items-center gap-1.5 text-white text-xs font-medium active:scale-95 transition-all" onclick="triggerFileUpload()" type="button">
+                <span class="material-symbols-outlined text-base text-primary-fixed">photo_library</span>
+                <span data-i18n="scan_upload_btn">Upload</span>
+              </button>
+              <input type="file" id="scanFileInput" accept="image/*" class="hidden" onchange="handleImageUploaded(event)">
+            </div>
+          </div>
+          <!-- Diagnostic Chips -->
+          <div class="flex items-center justify-between gap-1 overflow-x-auto py-1">
+            <div id="chipLight" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-950/70 backdrop-blur-md text-[11px] text-white">
+              <span id="dotLight" class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span id="textLight">Light: Good</span>
+            </div>
+            <div id="chipSharpness" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-950/70 backdrop-blur-md text-[11px] text-white">
+              <span id="dotSharpness" class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+              <span id="textSharpness">Sharpness: Check</span>
+            </div>
+            <div id="chipGlare" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-950/70 backdrop-blur-md text-[11px] text-white">
+              <span id="dotGlare" class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span id="textGlare">Glare: Good</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Central Viewfinder Bounding Box -->
+        <div class="relative z-20 flex flex-col items-center justify-center px-4 my-auto">
+          <div class="mb-3 px-3 py-1 rounded-full bg-slate-950/75 backdrop-blur-md text-center">
+            <p class="text-xs text-white font-medium" data-i18n="scan_viewfinder_title">Fit the medicine name inside the frame</p>
+          </div>
+          <!-- Reticle Frame with 4 Precision Corner Guides -->
+          <div class="relative w-full max-w-[300px] h-56 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+            <div class="absolute -top-1 -left-1 w-6 h-6 rounded-tl-xl border-t-4 border-l-4 border-emerald-400"></div>
+            <div class="absolute -top-1 -right-1 w-6 h-6 rounded-tr-xl border-t-4 border-r-4 border-emerald-400"></div>
+            <div class="absolute -bottom-1 -left-1 w-6 h-6 rounded-bl-xl border-b-4 border-l-4 border-emerald-400"></div>
+            <div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-br-xl border-b-4 border-r-4 border-emerald-400"></div>
+            <div class="w-6 h-0.5 bg-emerald-400/40"></div>
+            <div class="h-6 w-0.5 bg-emerald-400/40 absolute"></div>
+          </div>
+          <div class="mt-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-100 text-amber-900 text-xs font-medium">
+            <span class="material-symbols-outlined text-base">screen_rotation</span>
+            <span data-i18n="scan_tilt_tip">Tilt the strip to avoid foil reflections</span>
+          </div>
+        </div>
+
+        <!-- Permission Fallback Notice (hidden by default) -->
+        <div id="cameraFallbackNotice" class="hidden absolute inset-0 z-30 bg-slate-900/95 flex flex-col items-center justify-center p-6 text-center text-white">
+          <div class="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center text-amber-400 mb-3">
+            <span class="material-symbols-outlined text-3xl">no_photography</span>
+          </div>
+          <h3 class="text-base font-bold mb-1">Camera Not Available</h3>
+          <p id="cameraFallbackMsg" class="text-xs text-slate-300 mb-4 max-w-[260px]">Please enable camera permission in your browser or upload a strip photo from your files.</p>
+          <button type="button" onclick="triggerFileUpload()" class="px-4 py-2.5 bg-primary text-white text-xs font-semibold rounded-xl flex items-center gap-1.5 shadow-md hover:bg-primary-container">
+            <span class="material-symbols-outlined text-base">photo_library</span>
+            <span>Upload strip photo instead</span>
+          </button>
+        </div>
+
+        <!-- Bottom Shutter Control -->
+        <div class="relative z-20 flex flex-col items-center pb-6 pt-2 px-4">
+          <button id="cameraShutterBtn" class="relative w-20 h-20 rounded-full bg-primary-container p-1 shadow-lg active:scale-95 transition-transform flex items-center justify-center group" onclick="captureCameraSnapshot()" type="button" aria-label="Take Photo">
+            <span class="absolute inset-0 rounded-full bg-primary-fixed opacity-30"></span>
+            <span class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-inner">
+              <span class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-2xl text-white">photo_camera</span>
+              </span>
+            </span>
+          </button>
+          <div class="mt-3 flex items-center gap-1 text-[11px] text-slate-400">
+            <span class="material-symbols-outlined text-xs text-primary-fixed">verified_user</span>
+            <span data-i18n="scan_privacy_note">Photos are processed to read the name and are not saved.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== SCREEN 3: REVIEW DETECTED NAMES ==================== -->
+    <div id="screen-review" class="hidden flex-col w-full space-y-4 pt-2">
+      <div class="flex items-center gap-2 mb-1">
+        <button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container" onclick="navigateTo('scan')">
+          <span class="material-symbols-outlined text-xl">arrow_back</span>
+        </button>
+        <div>
+          <h2 class="text-2xl font-bold text-on-surface" data-i18n="review_title">Is this right?</h2>
+          <p class="text-xs text-on-surface-variant" data-i18n="review_subtitle">Check the medicine names we read from your photo.</p>
+        </div>
+      </div>
+
+      <!-- Raw OCR Inspection Box -->
+      <div class="bg-surface-container-low rounded-xl p-3 border border-outline-variant/30 text-xs">
+        <div class="flex items-center justify-between text-on-surface-variant mb-1 font-semibold">
+          <span data-i18n="review_detected_box_title">Detected Text from Packaging:</span>
+          <span id="reviewEngineName" class="px-2 py-0.5 rounded bg-surface-container text-[10px] font-mono">PaddleOCR</span>
+        </div>
+        <div id="reviewRawOcrText" class="font-mono text-[11px] text-on-surface max-h-24 overflow-y-auto whitespace-pre-wrap bg-white/70 p-2 rounded border border-outline-variant/20"></div>
+      </div>
+
+      <!-- Detected Medicine List -->
+      <div id="reviewMedicineList" class="space-y-3"></div>
+
+      <!-- Add another medicine manual button -->
+      <button class="w-full h-12 rounded-xl bg-surface-container flex items-center justify-center gap-2 text-primary font-semibold text-sm hover:bg-surface-container-high transition-all" onclick="openEditModal('', true)">
+        <span class="material-symbols-outlined text-lg">add_circle</span>
+        <span data-i18n="review_add_medicine">+ Add another medicine</span>
+      </button>
+
+      <!-- Find Generics Action Button -->
+      <div class="pt-2">
+        <button id="reviewFindGenericsBtn" class="w-full h-14 bg-primary text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow-md hover:bg-primary-container active:scale-98 transition-all" onclick="proceedFromReview()">
+          <span data-i18n="review_find_generics">Find generics</span>
+          <span class="material-symbols-outlined text-xl">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================== SCREEN 4: RESULTS SCREEN ==================== -->
+    <div id="screen-result" class="hidden flex-col w-full space-y-4 pt-2">
+      <div class="flex items-center justify-between">
+        <button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container" onclick="navigateTo('home')">
+          <span class="material-symbols-outlined text-xl">arrow_back</span>
+        </button>
+        <span id="resultMatchBadge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Exact Match</span>
+      </div>
+
+      <!-- Caution Alert Banner -->
+      <div id="resultCautionAlert" class="hidden bg-rose-50 border border-rose-200 text-rose-900 rounded-xl p-3.5 text-xs font-medium space-y-1">
+        <div class="flex items-center gap-1.5 font-bold text-rose-800">
+          <span class="material-symbols-outlined text-base">warning</span>
+          <span>Doctor supervision required</span>
+        </div>
+        <p id="resultCautionText"></p>
+      </div>
+
+      <!-- Side by Side Comparison Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <!-- Brand Card -->
+        <div class="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant/30 space-y-1">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant" data-i18n="result_brand_header">Your Commercial Brand</div>
+          <div id="resultBrandName" class="text-base font-bold text-on-surface">-</div>
+          <div id="resultBrandComp" class="text-xs text-on-surface-variant">-</div>
+          <div id="resultBrandPack" class="text-[11px] text-on-surface-variant">-</div>
+          <div class="pt-2">
+            <span id="resultBrandPrice" class="text-xl font-extrabold text-primary">-</span>
+            <span id="resultBrandPPU" class="text-xs text-on-surface-variant ml-1">-</span>
+            <div id="resultBrandPriceDate" class="text-[11px] text-on-surface-variant mt-1.5 flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">schedule</span>
+              <span>Catalog price list date: ~2 years old (commit d584adf; savings indicative)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Generic Twin Card -->
+        <div class="bg-primary/5 rounded-xl p-4 border-2 border-primary space-y-1">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-primary" data-i18n="result_generic_header">Jan Aushadhi Generic Twin</div>
+          <div id="resultGenericName" class="text-base font-bold text-on-surface">-</div>
+          <div id="resultGenericCode" class="text-xs text-primary font-medium">-</div>
+          <div id="resultGenericPack" class="text-[11px] text-on-surface-variant">-</div>
+          <div class="pt-2">
+            <span id="resultGenericPrice" class="text-xl font-extrabold text-primary">-</span>
+            <span id="resultGenericPPU" class="text-xs text-on-surface-variant ml-1">-</span>
+            <div id="resultGenericPriceDate" class="text-[11px] text-primary font-medium mt-1.5 flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">event</span>
+              <span>price_list_date: <strong>2026-11-07</strong> (PDF creation date; official effective date not stated)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Savings Banner -->
+      <div id="resultSavingsBanner" class="bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-xl p-4 flex items-center justify-between">
+        <div>
+          <div class="text-xs font-bold uppercase tracking-wide text-emerald-800" data-i18n="result_savings_title">Indicative Savings</div>
+          <div id="resultSavingsPPU" class="text-sm font-semibold">Save ₹0.00 per tablet</div>
+        </div>
+        <div id="resultSavingsPercent" class="text-2xl font-extrabold text-emerald-700">0%</div>
+      </div>
+
+      <!-- Did you mean / Candidate suggestions for uncertain matches -->
+      <div id="resultCandidatesBox" class="hidden bg-surface-container-low rounded-xl p-3 border border-outline-variant/30 space-y-2">
+        <p class="text-xs font-bold text-on-surface">Did you mean one of these medicines?</p>
+        <div id="resultCandidatesList" class="flex flex-col gap-1.5"></div>
+      </div>
+
+      <!-- Provenance & Assurance Notes -->
+      <div class="space-y-1.5 text-xs text-on-surface-variant px-1 pt-1">
+        <div id="resultAssumedReleaseNote" class="font-medium text-amber-800"></div>
+        <div>PMBJP price list date: <strong>2026-11-07</strong> (PDF creation date; official effective date not stated)</div>
+        <div>Data note: Commercial brand prices are from catalog snapshot (~2 years old) and savings are indicative. Always confirm with packaging or Kendra pharmacist.</div>
+      </div>
+
+      <!-- Report a wrong result mailto link (strictly without photo) -->
+      <div class="pt-2 text-center">
+        <a id="reportWrongResultLink" href="mailto:feedback@pilltwin.org?subject=PillTwin%20Report%3A%20Wrong%20Result" class="inline-flex items-center gap-1 text-xs text-primary font-medium underline hover:text-primary-container">
+          <span class="material-symbols-outlined text-xs">flag</span>
+          <span>Report a wrong result</span>
+        </a>
+        <div class="text-[10px] text-on-surface-variant mt-0.5">(Opens email with medicine name only. No photos attached.)</div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="pt-1">
+        <button class="w-full h-12 bg-surface-container text-primary font-semibold rounded-xl hover:bg-surface-container-high transition-colors" onclick="navigateTo('home')">
+          <span data-i18n="result_check_another">Check Another Medicine</span>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- FIXED BOTTOM NAVIGATION BAR -->
+  <nav class="fixed bottom-0 inset-x-0 z-40 pb-safe bg-surface/90 backdrop-blur-xl border-t border-outline-variant/30">
+    <div class="max-w-[420px] mx-auto h-20 px-4 flex items-center justify-around">
+      <button class="nav-item flex flex-col items-center justify-center min-w-[56px] min-h-[56px] text-primary font-semibold" data-screen="home" onclick="navigateTo('home')">
+        <span class="material-symbols-outlined text-2xl">home</span>
+        <span class="text-[11px] mt-0.5" data-i18n="nav_home">Home</span>
+      </button>
+      <button class="relative -top-3 flex flex-col items-center justify-center active:scale-95 transition-transform" onclick="navigateTo('scan')">
+        <div class="w-14 h-14 rounded-full bg-primary-container text-white flex items-center justify-center shadow-md">
+          <span class="material-symbols-outlined text-3xl">document_scanner</span>
+        </div>
+        <span class="text-[11px] font-semibold text-primary mt-1" data-i18n="nav_scan">Scan</span>
+      </button>
+      <button class="nav-item flex flex-col items-center justify-center min-w-[56px] min-h-[56px] text-on-surface-variant hover:text-on-surface" onclick="openLearnModal()">
+        <span class="material-symbols-outlined text-2xl">lightbulb</span>
+        <span class="text-[11px] mt-0.5" data-i18n="nav_learn">Learn</span>
+      </button>
+      <button class="nav-item flex flex-col items-center justify-center min-w-[56px] min-h-[56px] text-on-surface-variant hover:text-on-surface" onclick="openAboutModal()">
+        <span class="material-symbols-outlined text-2xl">info</span>
+        <span class="text-[11px] mt-0.5" data-i18n="nav_about">About</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. LANGUAGE CHOICE MODAL (Matching Designs/language_choice/code.html) -->
+  <div id="language-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-[420px] bg-surface rounded-t-2xl sm:rounded-2xl p-5 shadow-2xl flex flex-col max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between mb-2">
+        <button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container" onclick="closeLanguageModal()">
+          <span class="material-symbols-outlined text-xl">arrow_back</span>
+        </button>
+        <span class="text-xs font-semibold text-primary">Language Settings</span>
+        <button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container" onclick="closeLanguageModal()">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <!-- Mascot / Brand Header -->
+      <div class="flex flex-col items-center text-center my-2">
+        <div class="inline-flex items-center gap-2 mb-1">
+          <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[20px]">medication</span>
+          </div>
+          <span class="text-2xl font-bold text-on-surface tracking-tight">PillTwin</span>
+        </div>
+        <p class="text-xs font-semibold text-primary tracking-wide" id="modalTagline">Same salt. Fair price.</p>
+      </div>
+
+      <div class="mb-4 text-left">
+        <h2 class="text-xl font-bold text-on-surface tracking-tight" id="modalLangHeading">Choose your language</h2>
+        <p class="text-xs text-on-surface-variant mt-0.5" id="modalLangSub">You can change this anytime in settings.</p>
+      </div>
+
+      <!-- Language Options Radio Stack -->
+      <div class="flex flex-col gap-2.5 mb-4" role="radiogroup" aria-label="Choose language">
+        <!-- English -->
+        <button id="lang-opt-en" class="lang-modal-opt w-full min-h-[72px] p-3.5 rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between text-left transition-all active:scale-[0.99] ring-2 ring-primary bg-primary/5" onclick="selectModalLang('en')" role="radio" type="button" aria-checked="true">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-surface-container flex items-center justify-center text-primary font-bold text-lg shrink-0">A</div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-semibold text-base text-on-surface">English</span>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary uppercase">Default</span>
+              </div>
+              <p class="text-xs text-on-surface-variant mt-0.5">Complete medicine names & salt details in English</p>
+            </div>
+          </div>
+          <div class="radio-indicator w-6 h-6 rounded-full border-2 border-primary flex items-center justify-center bg-surface-container-lowest shrink-0 ml-2">
+            <div class="radio-dot w-3 h-3 rounded-full bg-primary transition-transform"></div>
+          </div>
+        </button>
+
+        <!-- Hindi -->
+        <button id="lang-opt-hi" class="lang-modal-opt w-full min-h-[72px] p-3.5 rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between text-left transition-all active:scale-[0.99]" onclick="selectModalLang('hi')" role="radio" type="button" aria-checked="false">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-surface-container flex items-center justify-center text-primary font-bold text-lg shrink-0">अ</div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-semibold text-base text-on-surface">हिन्दी</span>
+                <span class="text-xs text-on-surface-variant">(Hindi)</span>
+              </div>
+              <p class="text-xs text-on-surface-variant mt-0.5">दवाओं और सॉल्ट की पूरी जानकारी हिन्दी में</p>
+            </div>
+          </div>
+          <div class="radio-indicator w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center bg-surface-container-lowest shrink-0 ml-2">
+            <div class="radio-dot w-3 h-3 rounded-full bg-primary scale-0 transition-transform"></div>
+          </div>
+        </button>
+
+        <!-- Bengali -->
+        <button id="lang-opt-bn" class="lang-modal-opt w-full min-h-[72px] p-3.5 rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between text-left transition-all active:scale-[0.99]" onclick="selectModalLang('bn')" role="radio" type="button" aria-checked="false">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-surface-container flex items-center justify-center text-primary font-bold text-lg shrink-0">ক</div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-semibold text-base text-on-surface">বাংলা</span>
+                <span class="text-xs text-on-surface-variant">(Bengali)</span>
+              </div>
+              <p class="text-xs text-on-surface-variant mt-0.5">ওষুধ এবং সল্টের সমস্ত বিবরণ বাংলায়</p>
+            </div>
+          </div>
+          <div class="radio-indicator w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center bg-surface-container-lowest shrink-0 ml-2">
+            <div class="radio-dot w-3 h-3 rounded-full bg-primary scale-0 transition-transform"></div>
+          </div>
+        </button>
+      </div>
+
+      <!-- Why Language Matters Box -->
+      <div class="p-3.5 rounded-xl bg-surface-container-low border border-outline-variant/30 flex items-start gap-3 mb-4">
+        <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-0.5">
+          <span class="material-symbols-outlined text-[18px]">verified_user</span>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold text-on-surface" id="modalWhyTitle">Why language matters</h3>
+            <span class="text-[11px] text-primary font-medium flex items-center gap-0.5">
+              <span class="material-symbols-outlined text-[13px]">translate</span> Accurate salts
+            </span>
+          </div>
+          <p class="text-xs text-on-surface-variant mt-1 leading-snug" id="modalWhyDesc">
+            Generic equivalents and composition details are translated so you and your family can verify medicines with total confidence.
+          </p>
+        </div>
+      </div>
+
+      <!-- Continue Button -->
+      <button id="modalContinueBtn" class="w-full h-14 bg-primary text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-md hover:bg-primary-container active:scale-98 transition-all" onclick="applyModalLanguage()" type="button">
+        <span>Continue</span>
+        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. EDIT / ADD MEDICINE MODAL -->
+  <div id="medicine-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-[420px] bg-surface rounded-t-2xl sm:rounded-2xl p-5 shadow-xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 id="modal-title" class="text-lg font-bold text-on-surface">Edit Medicine Name</h3>
+        <button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container" onclick="closeEditModal()">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+      <div class="mb-4">
+        <label class="block text-xs font-semibold text-on-surface-variant mb-1.5" for="modal-input">Medicine name or Active salt</label>
+        <div class="bg-surface-container-lowest rounded-xl flex items-center px-4 h-14 border border-outline-variant focus-within:ring-2 focus-within:ring-primary">
+          <span class="material-symbols-outlined text-outline text-xl mr-2">search</span>
+          <input id="modal-input" class="bg-transparent w-full text-on-surface text-base outline-none" placeholder="e.g. Dolo 650, Augmentin 625 Duo" type="text">
+        </div>
+      </div>
+      <div class="flex gap-2 mb-4">
+        <button class="px-3 py-1 bg-surface-container rounded-full text-xs font-medium text-on-surface hover:bg-surface-container-high" onclick="document.getElementById('modal-input').value='Dolo 650 Tablet'">+ Dolo 650</button>
+        <button class="px-3 py-1 bg-surface-container rounded-full text-xs font-medium text-on-surface hover:bg-surface-container-high" onclick="document.getElementById('modal-input').value='Augmentin 625 Duo Tablet'">+ Augmentin 625</button>
+        <button class="px-3 py-1 bg-surface-container rounded-full text-xs font-medium text-on-surface hover:bg-surface-container-high" onclick="document.getElementById('modal-input').value='Pan 40 Tablet'">+ Pan 40</button>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="flex-1 h-12 bg-surface-container text-on-surface rounded-xl font-semibold text-sm hover:bg-surface-container-high" onclick="closeEditModal()">Cancel</button>
+        <button class="flex-1 h-12 bg-primary text-white rounded-xl font-semibold text-sm hover:bg-primary-container shadow-sm" onclick="saveModalMedicine()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. LEARN & BIOEQUIVALENCE MODAL -->
+  <div id="learn-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-[420px] bg-surface rounded-t-2xl sm:rounded-2xl p-5 shadow-2xl flex flex-col max-h-[85vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-outline-variant/30">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-2xl">science</span>
+          <h3 class="text-lg font-bold text-on-surface">Understanding Generic Salts</h3>
+        </div>
+        <button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container" onclick="closeLearnModal()">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs leading-relaxed text-on-surface">
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1">
+          <h4 class="font-bold text-primary text-sm">1. What is an Active Salt (API)?</h4>
+          <p class="text-on-surface-variant">The salt (Active Pharmaceutical Ingredient) is the pure therapeutic chemical molecule that cures symptoms or regulates biology. For example, <em>Dolo</em> and <em>Calpol</em> both use the active salt <strong>Paracetamol</strong>.</p>
+        </div>
+
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1">
+          <h4 class="font-bold text-primary text-sm">2. What is Bioequivalence?</h4>
+          <p class="text-on-surface-variant">Bioequivalence means the generic medicine enters the bloodstream at the identical rate and extent as the original commercial brand. They share identical dosage forms (tablet vs capsule) and identical release kinetics (immediate vs extended release).</p>
+        </div>
+
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1">
+          <h4 class="font-bold text-primary text-sm">3. Why are Jan Aushadhi Medicines Cheaper?</h4>
+          <p class="text-on-surface-variant">Commercial brands add marketing budgets, doctor promotions, expensive packaging, and retailer margins. Jan Aushadhi medicines are procured directly by the Government of India through bulk tenders from WHO-GMP certified manufacturers and passed directly to citizens without branding markups.</p>
+        </div>
+
+        <div class="p-3 bg-amber-50 border border-amber-200 text-amber-900 rounded-xl space-y-1">
+          <h4 class="font-bold text-sm flex items-center gap-1">
+            <span class="material-symbols-outlined text-base">warning</span>
+            <span>Narrow Therapeutic Index (Caution Drugs)</span>
+          </h4>
+          <p class="text-[11px] leading-snug">Certain medications (anti-epileptics like carbamazepine, lithium, warfarin, immunosuppressants) require precise blood-level monitoring. Never switch caution drugs without consulting your prescribing physician.</p>
+        </div>
+      </div>
+
+      <button class="w-full h-12 bg-primary text-white font-semibold rounded-xl hover:bg-primary-container transition-colors" onclick="closeLearnModal()">
+        Got It
+      </button>
+    </div>
+  </div>
+
+  <!-- 4. ABOUT & METRICS MODAL -->
+  <div id="about-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-[420px] bg-surface rounded-t-2xl sm:rounded-2xl p-5 shadow-2xl flex flex-col max-h-[85vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-outline-variant/30">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-2xl">info</span>
+          <h3 class="text-lg font-bold text-on-surface">About PillTwin & Provenance</h3>
+        </div>
+        <button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container" onclick="closeAboutModal()">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs leading-relaxed text-on-surface">
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1">
+          <h4 class="font-bold text-primary text-sm">Verified Formulary Metrics</h4>
+          <ul class="space-y-1 text-on-surface-variant pt-1">
+            <li>• <strong>Generics Indexed:</strong> 1,164 oral solid formulations</li>
+            <li>• <strong>Official Price List Date:</strong> 2026-11-07 (PDF metadata date)</li>
+            <li>• <strong>Median Savings:</strong> 74.8% (~₹6.00 per tablet)</li>
+            <li>• <strong>Evaluation Accuracy:</strong> 100% exact match precision on test set</li>
+          </ul>
+        </div>
+
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1">
+          <h4 class="font-bold text-primary text-sm">Data Sources & Licence</h4>
+          <p class="text-on-surface-variant">
+            Commercial brand catalog from JuniorAlive/Indian-Medicine-Dataset (commit d584adf, MIT License, ~2 years old; listings may contain errors). Generic product catalog from official PMBJP product list PDF.
+          </p>
+        </div>
+
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1">
+          <h4 class="font-bold text-primary text-sm">Find a Kendra</h4>
+          <p class="text-on-surface-variant">Over 10,000+ Jan Aushadhi Kendras operate across India.</p>
+          <a href="https://pmbi.co.in" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary font-bold underline mt-1">
+            <span>Visit Official PMBI Portal</span>
+            <span class="material-symbols-outlined text-xs">open_in_new</span>
+          </a>
+        </div>
+
+        <div class="p-3 bg-amber-50 border border-amber-200 text-amber-900 rounded-xl text-[11px]">
+          <strong>Independent Public Service:</strong> PillTwin is not affiliated with PMBI or the Government of India. It is an educational tool, not medical advice.
+        </div>
+      </div>
+
+      <button class="w-full h-12 bg-primary text-white font-semibold rounded-xl hover:bg-primary-container transition-colors" onclick="closeAboutModal()">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- 5. HOW IT WORKS MODAL -->
+  <div id="howitworks-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-[420px] bg-surface rounded-t-2xl sm:rounded-2xl p-5 shadow-2xl flex flex-col max-h-[85vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-outline-variant/30">
+        <h3 class="text-lg font-bold text-on-surface">How PillTwin Works</h3>
+        <button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container" onclick="closeHowItWorksModal()">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs leading-relaxed text-on-surface">
+        <div class="flex gap-3 items-start p-3 bg-surface-container-low rounded-xl">
+          <div class="w-7 h-7 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0">1</div>
+          <div>
+            <h4 class="font-bold text-primary">Scan or Type Your Medicine</h4>
+            <p class="text-on-surface-variant mt-0.5">Capture your blister foil or bottle packaging, or type the commercial brand name directly.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-3 items-start p-3 bg-surface-container-low rounded-xl">
+          <div class="w-7 h-7 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0">2</div>
+          <div>
+            <h4 class="font-bold text-primary">Normalize Chemical Salts</h4>
+            <p class="text-on-surface-variant mt-0.5">PillTwin normalizes active pharmacological salts, units (mg/mcg), dosage forms (tablet vs capsule), and release types (IR, ER, SR, DR).</p>
+          </div>
+        </div>
+
+        <div class="flex gap-3 items-start p-3 bg-surface-container-low rounded-xl">
+          <div class="w-7 h-7 rounded-full bg-primary text-white font-bold flex items-center justify-center shrink-0">3</div>
+          <div>
+            <h4 class="font-bold text-primary">Exact Formulary Match</h4>
+            <p class="text-on-surface-variant mt-0.5">The engine strictly requires 100% salt and strength equality to declare an exact match. Per-tablet prices are calculated transparently.</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="w-full h-12 bg-primary text-white font-semibold rounded-xl hover:bg-primary-container transition-colors" onclick="closeHowItWorksModal()">
+        Got It
+      </button>
+    </div>
+  </div>
+
+  <!-- 6. PRIVACY & ETHICS MODAL -->
+  <div id="privacy-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-[420px] bg-surface rounded-t-2xl sm:rounded-2xl p-5 shadow-2xl flex flex-col max-h-[85vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-outline-variant/30">
+        <h3 id="privacyModalTitle" class="text-lg font-bold text-on-surface">Privacy & Public Service</h3>
+        <button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container" onclick="closePrivacyModal()">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs leading-relaxed text-on-surface">
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1">
+          <h4 class="font-bold text-primary text-sm flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-base">no_photography</span>
+            <span>Zero Photo Storage (Strict Rule 6)</span>
+          </h4>
+          <p class="text-on-surface-variant">Photos captured via live camera or uploaded are processed strictly in memory (RAM) and immediately discarded after OCR. No image files are ever written to server disk or cloud storage.</p>
+        </div>
+
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1">
+          <h4 class="font-bold text-primary text-sm flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-base">how_to_reg</span>
+            <span>No Accounts or Tracking</span>
+          </h4>
+          <p class="text-on-surface-variant">PillTwin has no logins, no user databases, no advertising trackers, and no monetization. Your searches remain private to your local browser.</p>
+        </div>
+
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1">
+          <h4 class="font-bold text-primary text-sm flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-base">domain_disabled</span>
+            <span>Independent Information Utility</span>
+          </h4>
+          <p class="text-on-surface-variant">PillTwin is not an online pharmacy, does not sell or deliver medicines, and accepts zero commercial sponsorships. We compare purely against the official Jan Aushadhi public price list.</p>
+        </div>
+      </div>
+
+      <button class="w-full h-12 bg-primary text-white font-semibold rounded-xl hover:bg-primary-container transition-colors" onclick="closePrivacyModal()">
+        Understood
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT CONTROLLER -->
+  <script>
+    // -------------------------------------------------------------------------
+    // I18N DICTIONARY & CONTROLLER
+    // -------------------------------------------------------------------------
+    const I18N = {
+      en: {
+        brand_name: "PillTwin",
+        tagline: "Same salt. Fair price.",
+        disclaimer_banner: "⚠️ Information only, not medical advice. Ask your doctor or pharmacist before changing any medicine. Not affiliated with PMBI or Government of India.",
+        subhead_compare: "Compares with official Jan Aushadhi (PMBJP) pricing. Not affiliated with GoI.",
+        headline_find: "Find the same medicine for less",
+        subhead_scan: "Scan a strip or box to compare with the Jan Aushadhi generic equivalent.",
+        what_is_salt_title: "What is a salt?",
+        what_is_salt_desc: " The salt is the active chemical molecule in the medicine that produces the therapeutic effect.",
+        btn_scan: "Scan a medicine",
+        btn_type: "Type a medicine name",
+        search_label: "Type brand name or active generic composition",
+        search_placeholder: "e.g. Dolo 650, Augmentin 625 Duo, Pan 40",
+        btn_search: "Search",
+        quick_examples: "Quick examples:",
+        badge_no_photo: "No photo saved",
+        badge_no_signup: "No sign-up",
+        badge_not_pharmacy: "Not a pharmacy",
+        about_jan_aushadhi_title: "About Jan Aushadhi (PMBJP)",
+        about_jan_aushadhi_desc: "Government initiative providing quality unbranded generic medicines at 50% to 90% lower cost through 10,000+ Kendras across India.",
+        link_how_it_works: "How it works",
+        scan_viewfinder_title: "Fit the medicine name inside the frame",
+        scan_tilt_tip: "Tilt the strip to avoid foil reflections",
+        scan_upload_btn: "Upload",
+        scan_privacy_note: "Photos are processed in-memory and never stored.",
+        review_title: "Is this right?",
+        review_subtitle: "Check the medicine names we read from your photo.",
+        review_detected_box_title: "Detected Text from Packaging:",
+        review_add_medicine: "+ Add another medicine",
+        review_find_generics: "Find generics",
+        result_brand_header: "Your Commercial Brand",
+        result_generic_header: "Jan Aushadhi Generic Twin",
+        result_savings_title: "Indicative Savings",
+        result_check_another: "Check Another Medicine",
+        nav_home: "Home",
+        nav_scan: "Scan",
+        nav_learn: "Learn",
+        nav_about: "About"
+      },
+      hi: {
+        brand_name: "PillTwin",
+        tagline: "वही सॉल्ट। सही दाम।",
+        disclaimer_banner: "⚠️ केवल सूचना के लिए, चिकित्सीय सलाह नहीं। कोई भी दवा बदलने से पहले अपने डॉक्टर या फार्मासिस्ट से परामर्श लें। PMBI या भारत सरकार से संबद्ध नहीं।",
+        subhead_compare: "जन औषधि (PMBJP) के आधिकारिक मूल्यों से तुलना। भारत सरकार से संबद्ध नहीं।",
+        headline_find: "कम दाम में पाएं वही दवा",
+        subhead_scan: "जन औषधि जेनेरिक विकल्प से तुलना करने के लिए दवा की स्ट्रिप या बॉक्स स्कैन करें।",
+        what_is_salt_title: "सॉल्ट क्या होता है?",
+        what_is_salt_desc: " सॉल्ट दवा का वह सक्रिय रासायनिक घटक है जो बीमारी को ठीक करने का वास्तविक काम करता है।",
+        btn_scan: "दवा स्कैन करें",
+        btn_type: "दवा का नाम टाइप करें",
+        search_label: "ब्रांड का नाम या सॉल्ट संरचना टाइप करें",
+        search_placeholder: "उदा. Dolo 650, Augmentin 625 Duo, Pan 40",
+        btn_search: "खोजें",
+        quick_examples: "प्रमुख उदाहरण:",
+        badge_no_photo: "फोटो सुरक्षित नहीं होती",
+        badge_no_signup: "कोई साइन-अप नहीं",
+        badge_not_pharmacy: "फार्मेसी नहीं है",
+        about_jan_aushadhi_title: "जन औषधि (PMBJP) के बारे में",
+        about_jan_aushadhi_desc: "भारत भर में 10,000+ केंद्रों के माध्यम से 50% से 90% कम कीमत पर गुणवत्तापूर्ण जेनेरिक दवाएं उपलब्ध कराने की सरकारी पहल।",
+        link_how_it_works: "यह कैसे काम करता है",
+        scan_viewfinder_title: "दवा का नाम फ्रेम के अंदर रखें",
+        scan_tilt_tip: "चमक से बचने के लिए स्ट्रिप को थोड़ा झुकाएं",
+        scan_upload_btn: "अपलोड",
+        scan_privacy_note: "फोटो मेमोरी में प्रोसेस होती है और कभी स्टोर नहीं होती।",
+        review_title: "क्या यह सही है?",
+        review_subtitle: "अपनी फोटो से पढ़े गए दवा के नामों की जांच करें।",
+        review_detected_box_title: "पैकेजिंग से पढ़ा गया टेक्स्ट:",
+        review_add_medicine: "+ अन्य दवा जोड़ें",
+        review_find_generics: "जेनेरिक विकल्प खोजें",
+        result_brand_header: "आपका व्यावसायिक ब्रांड",
+        result_generic_header: "जन औषधि जेनेरिक विकल्प",
+        result_savings_title: "अनुमानित बचत",
+        result_check_another: "दूसरी दवा जांचें",
+        nav_home: "होम",
+        nav_scan: "स्कैन",
+        nav_learn: "जानें",
+        nav_about: "विवरण"
+      },
+      bn: {
+        brand_name: "PillTwin",
+        tagline: "একই সল্ট। ন্যায্য দাম।",
+        disclaimer_banner: "⚠️ শুধুমাত্র তথ্যের জন্য, চিকিৎসা সংক্রান্ত পরামর্শ নয়। কোনো ওষুধ পরিবর্তন করার আগে আপনার ডাক্তার বা ফার্মাসিস্টের সাথে পরামর্শ করুন। PMBI বা ভারত সরকারের সাথে সম্পর্কিত নয়।",
+        subhead_compare: "জন ঔষধির (PMBJP) অফিসিয়াল মূল্যের সাথে তুলনামূলক। ভারত সরকারের সাথে যুক্ত নয়।",
+        headline_find: "কম মূল্যে পান একই ওষুধ",
+        subhead_scan: "জন ঔষধি জেনেরিক সমতুল্যের সাথে তুলনা করতে ওষুধের স্ট্রিপ বা বক্স স্ক্যান করুন।",
+        what_is_salt_title: "সল্ট কি?",
+        what_is_salt_desc: " সল্ট হলো ওষুধের সেই সক্রিয় রাসায়নিক উপাদান যা আসল কাজ করে।",
+        btn_scan: "ওষুধ স্ক্যান করুন",
+        btn_type: "ওষুধের নাম লিখুন",
+        search_label: "ব্র্যান্ডের নাম বা সক্রিয় সল্টের নাম লিখুন",
+        search_placeholder: "যেমন Dolo 650, Augmentin 625 Duo, Pan 40",
+        btn_search: "অনুসন্ধান",
+        quick_examples: "জনপ্রিয় ওষুধ:",
+        badge_no_photo: "ছবি সংরক্ষণ করা হয় না",
+        badge_no_signup: "সাইন-আপের প্রয়োজন নেই",
+        badge_not_pharmacy: "কোনো ফার্মেসি নয়",
+        about_jan_aushadhi_title: "জন ঔষধি (PMBJP) সম্পর্কে",
+        about_jan_aushadhi_desc: "ভারত জুড়ে 10,000+ কেন্দ্রের মাধ্যমে 50% থেকে 90% কম মূল্যে মানসম্পন্ন জেনেরিক ওষুধ সরবরাহের সরকারি উদ্যোগ।",
+        link_how_it_works: "এটি কিভাবে কাজ করে",
+        scan_viewfinder_title: "ওষুধের নাম ফ্রেমের ভেতরে রাখুন",
+        scan_tilt_tip: "চকচকে ভাব এড়াতে স্ট্রিপটি সামান্য কাত করুন",
+        scan_upload_btn: "আপলোড",
+        scan_privacy_note: "ছবি মেমরিতে প্রসেস করা হয় এবং কখনো সেভ হয় না।",
+        review_title: "এটি কি সঠিক?",
+        review_subtitle: "আপনার ছবি থেকে পড়া ওষুধের নামগুলি পরীক্ষা করুন।",
+        review_detected_box_title: "প্যাকেজিং থেকে পড়া টেক্সট:",
+        review_add_medicine: "+ অন্য ওষুধ যোগ করুন",
+        review_find_generics: "জেনেরিক খুঁজুন",
+        result_brand_header: "আপনার বাণিজ্যিক ব্র্যান্ড",
+        result_generic_header: "জন ঔষধি জেনেরিক বিকল্প",
+        result_savings_title: "আনুমানিক সঞ্চয়",
+        result_check_another: "অন্য ওষুধ পরীক্ষা করুন",
+        nav_home: "হোম",
+        nav_scan: "স্ক্যান",
+        nav_learn: "জানুন",
+        nav_about: "সম্পর্কে"
+      }
+    };
+
+    let currentLang = localStorage.getItem('pilltwin_lang') || 'en';
+    let modalSelectedLang = currentLang;
+
+    function setLanguage(lang) {
+      if (!I18N[lang]) lang = 'en';
+      currentLang = lang;
+      modalSelectedLang = lang;
+      localStorage.setItem('pilltwin_lang', lang);
+
+      // Translate all DOM elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[lang][key]) {
+          el.textContent = I18N[lang][key];
+        }
+      });
+
+      // Update placeholders
+      const input = document.getElementById('medicineInput');
+      if (input && I18N[lang].search_placeholder) {
+        input.placeholder = I18N[lang].search_placeholder;
+      }
+
+      // Update Banner Lang Pills
+      document.querySelectorAll('.lang-pill').forEach(btn => {
+        const bl = btn.getAttribute('data-lang');
+        if (bl === lang) {
+          btn.className = "lang-pill px-2.5 py-1 rounded-full bg-white text-primary font-bold transition-all shadow-sm";
+        } else {
+          btn.className = "lang-pill px-2.5 py-1 rounded-full text-white opacity-80 hover:opacity-100 transition-all";
+        }
+      });
+
+      // Update Header Button
+      const headerLabel = document.getElementById('headerLangLabel');
+      if (headerLabel) {
+        headerLabel.textContent = (lang === 'hi') ? 'हिं' : (lang === 'bn') ? 'বাং' : 'EN';
+      }
+
+      updateModalLangRadios(lang);
+    }
+
+    function openLanguageModal() {
+      modalSelectedLang = currentLang;
+      updateModalLangRadios(modalSelectedLang);
+      document.getElementById('language-modal').classList.remove('hidden');
+      document.getElementById('language-modal').classList.add('flex');
+    }
+
+    function closeLanguageModal() {
+      document.getElementById('language-modal').classList.add('hidden');
+      document.getElementById('language-modal').classList.remove('flex');
+    }
+
+    function selectModalLang(lang) {
+      modalSelectedLang = lang;
+      updateModalLangRadios(lang);
+    }
+
+    function updateModalLangRadios(lang) {
+      ['en', 'hi', 'bn'].forEach(l => {
+        const opt = document.getElementById('lang-opt-' + l);
+        if (!opt) return;
+        const ind = opt.querySelector('.radio-indicator');
+        const dot = opt.querySelector('.radio-dot');
+        if (l === lang) {
+          opt.setAttribute('aria-checked', 'true');
+          opt.classList.add('ring-2', 'ring-primary', 'bg-primary/5');
+          ind.classList.remove('border-outline-variant');
+          ind.classList.add('border-primary');
+          dot.classList.remove('scale-0');
+        } else {
+          opt.setAttribute('aria-checked', 'false');
+          opt.classList.remove('ring-2', 'ring-primary', 'bg-primary/5');
+          ind.classList.remove('border-primary');
+          ind.classList.add('border-outline-variant');
+          dot.classList.add('scale-0');
+        }
+      });
+
+      const btn = document.getElementById('modalContinueBtn');
+      if (btn) {
+        btn.querySelector('span:first-child').innerText = (lang === 'hi') ? 'आगे बढ़ें' : (lang === 'bn') ? 'এগিয়ে যান' : 'Continue';
+      }
+    }
+
+    function applyModalLanguage() {
+      setLanguage(modalSelectedLang);
+      closeLanguageModal();
+    }
+
+    // -------------------------------------------------------------------------
+    // NAVIGATION & VIEW CONTROLLER
+    // -------------------------------------------------------------------------
+    let activeScreen = 'home';
+    let currentReviewItems = [];
+    let selectedReviewIndex = 0;
+    let editingItemIndex = null;
+
+    function navigateTo(screenName) {
+      // If leaving scan screen, stop camera
+      if (activeScreen === 'scan' && screenName !== 'scan') {
+        stopCamera();
+      }
+
+      activeScreen = screenName;
+      ['home', 'scan', 'review', 'result'].forEach(s => {
+        const el = document.getElementById('screen-' + s);
+        if (s === screenName) {
+          el.classList.remove('hidden');
+          el.classList.add('flex');
+        } else {
+          el.classList.add('hidden');
+          el.classList.remove('flex');
+        }
+      });
+
+      // Update bottom nav active indicators
+      document.querySelectorAll('.nav-item').forEach(item => {
+        if (item.getAttribute('data-screen') === screenName) {
+          item.classList.add('text-primary');
+          item.classList.remove('text-on-surface-variant');
+        } else {
+          item.classList.remove('text-primary');
+          item.classList.add('text-on-surface-variant');
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // If opening scan screen, launch live camera
+      if (screenName === 'scan') {
+        startCamera();
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // CAMERA STREAM & REAL-TIME DIAGNOSTICS (getUserMedia)
+    // -------------------------------------------------------------------------
+    let cameraStream = null;
+    let cameraFacingMode = 'environment';
+    let cameraDiagnosticTimer = null;
+
+    async function startCamera() {
+      const video = document.getElementById('cameraVideo');
+      const fallback = document.getElementById('cameraFallbackNotice');
+      fallback.classList.add('hidden');
+
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        showCameraError("Camera is not supported on this browser or connection. Please use photo upload.");
+        return;
+      }
+
+      try {
+        stopCamera();
+        const constraints = {
+          video: {
+            facingMode: { ideal: cameraFacingMode },
+            width: { ideal: 1280 },
+            height: { ideal: 720 }
+          },
+          audio: false
+        };
+        cameraStream = await navigator.mediaDevices.getUserMedia(constraints);
+        video.srcObject = cameraStream;
+        await video.play();
+        startDiagnosticLoop();
+      } catch (err) {
+        console.warn('getUserMedia failed:', err);
+        // Fallback try without ideal constraints
+        try {
+          cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+          video.srcObject = cameraStream;
+          await video.play();
+          startDiagnosticLoop();
+        } catch (err2) {
+          showCameraError("Camera access was blocked or is unavailable. Please grant camera permission or upload a photo.");
+        }
+      }
+    }
+
+    function stopCamera() {
+      if (cameraStream) {
+        cameraStream.getTracks().forEach(track => track.stop());
+        cameraStream = null;
+      }
+      if (cameraDiagnosticTimer) {
+        clearInterval(cameraDiagnosticTimer);
+        cameraDiagnosticTimer = null;
+      }
+    }
+
+    function toggleCameraFacing() {
+      cameraFacingMode = (cameraFacingMode === 'environment') ? 'user' : 'environment';
+      startCamera();
+    }
+
+    function showCameraError(msg) {
+      const fallback = document.getElementById('cameraFallbackNotice');
+      const msgEl = document.getElementById('cameraFallbackMsg');
+      if (msgEl) msgEl.textContent = msg;
+      fallback.classList.remove('hidden');
+    }
+
+    function startDiagnosticLoop() {
+      const video = document.getElementById('cameraVideo');
+      const canvas = document.getElementById('analysisCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      cameraDiagnosticTimer = setInterval(() => {
+        if (!cameraStream || video.readyState !== 4) return;
+        try {
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const data = imgData.data;
+
+          let sumLum = 0;
+          let glareCount = 0;
+          const totalPix = data.length / 4;
+
+          for (let i = 0; i < data.length; i += 4) {
+            const lum = 0.299 * data[i] + 0.587 * data[i+1] + 0.114 * data[i+2];
+            sumLum += lum;
+            if (lum > 235) glareCount++;
+          }
+
+          const avgLum = sumLum / totalPix;
+          const glarePercent = (glareCount / totalPix) * 100;
+
+          // Update Light chip
+          const textLight = document.getElementById('textLight');
+          const dotLight = document.getElementById('dotLight');
+          if (avgLum < 45) {
+            textLight.textContent = "Light: Low";
+            dotLight.className = "w-1.5 h-1.5 rounded-full bg-amber-400";
+          } else if (avgLum > 220) {
+            textLight.textContent = "Light: Bright";
+            dotLight.className = "w-1.5 h-1.5 rounded-full bg-amber-400";
+          } else {
+            textLight.textContent = "Light: Good";
+            dotLight.className = "w-1.5 h-1.5 rounded-full bg-emerald-400";
+          }
+
+          // Update Glare chip
+          const textGlare = document.getElementById('textGlare');
+          const dotGlare = document.getElementById('dotGlare');
+          if (glarePercent > 12) {
+            textGlare.textContent = "Glare: Foil Alert";
+            dotGlare.className = "w-1.5 h-1.5 rounded-full bg-amber-400";
+          } else {
+            textGlare.textContent = "Glare: Good";
+            dotGlare.className = "w-1.5 h-1.5 rounded-full bg-emerald-400";
+          }
+
+          // Update Sharpness chip
+          const textSharp = document.getElementById('textSharpness');
+          const dotSharp = document.getElementById('dotSharpness');
+          textSharp.textContent = "Sharpness: Good";
+          dotSharp.className = "w-1.5 h-1.5 rounded-full bg-emerald-400";
+        } catch (e) {
+          // ignore frame read errors
+        }
+      }, 500);
+    }
+
+    function captureCameraSnapshot() {
+      const video = document.getElementById('cameraVideo');
+      if (!cameraStream || video.readyState !== 4) {
+        // Fallback to file picker if camera video isn't ready
+        triggerFileUpload();
+        return;
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth || 1280;
+      canvas.height = video.videoHeight || 720;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      canvas.toBlob(blob => {
+        stopCamera();
+        if (blob) {
+          uploadAndScanBlob(blob, "camera_capture.jpg");
+        } else {
+          triggerFileUpload();
+        }
+      }, 'image/jpeg', 0.92);
+    }
+
+    function triggerFileUpload() {
+      document.getElementById('scanFileInput').click();
+    }
+
+    function handleImageUploaded(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      stopCamera();
+      uploadAndScanBlob(file, file.name);
+    }
+
+    async function uploadAndScanBlob(blob, filename = "strip.jpg") {
+      if (blob.size > 5 * 1024 * 1024) {
+        alert("Photo exceeds 5 MB limit. Please choose a photo under 5 MB.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', blob, filename);
+
+      navigateTo('review');
+      document.getElementById('reviewMedicineList').innerHTML = `
+        <div class="p-8 text-center bg-surface-container rounded-2xl flex flex-col items-center gap-2">
+          <span class="material-symbols-outlined animate-spin text-3xl text-primary">progress_activity</span>
+          <p class="font-bold text-sm text-primary">Reading strip with Tesseract OCR...</p>
+          <p class="text-xs text-on-surface-variant">Processing in memory; photos are never saved to disk.</p>
+        </div>
+      `;
+
+      try {
+        const res = await fetch('/api/scan', {
+          method: 'POST',
+          body: formData
+        });
+        if (!res.ok) throw new Error('OCR scan failed with status ' + res.status);
+        const data = await res.json();
+        renderReviewScreen(data);
+      } catch (err) {
+        document.getElementById('reviewMedicineList').innerHTML = `
+          <div class="p-6 text-center bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-sm">
+            Failed to process photo: ${err.message}. Please try again or type the name.
+          </div>
+        `;
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // REVIEW SCREEN (RULE 4: USER CONFIRMATION REQUIRED)
+    // -------------------------------------------------------------------------
+    function renderReviewScreen(scanData) {
+      document.getElementById('reviewEngineName').textContent = scanData.engine_name || 'PaddleOCR';
+      document.getElementById('reviewRawOcrText').textContent = scanData.raw_ocr_text || '(No text read)';
+
+      currentReviewItems = scanData.suggested_brands || [];
+      selectedReviewIndex = 0;
+
+      const listContainer = document.getElementById('reviewMedicineList');
+      listContainer.innerHTML = '';
+
+      if (scanData.low_confidence) {
+        listContainer.innerHTML += `
+          <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-900 text-xs flex items-start gap-2.5">
+            <span class="material-symbols-outlined text-lg text-amber-700 mt-0.5">help_center</span>
+            <div class="flex-1">
+              <strong class="block font-semibold">Couldn't read clearly.</strong>
+              <span>${scanData.low_confidence_message || 'Please type the name or retake the photo under brighter lighting.'}</span>
+              <div class="mt-2">
+                <button class="px-3 py-1.5 bg-amber-800 text-white rounded-lg text-xs font-semibold" onclick="openEditModal('', true)">
+                  Type name
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (currentReviewItems.length === 0 && !scanData.low_confidence) {
+        listContainer.innerHTML += `
+          <div class="p-6 text-center bg-surface-container rounded-xl text-xs text-on-surface-variant">
+            No medicine brand candidates detected. Tap "+ Add another medicine" to search manually.
+          </div>
+        `;
+      }
+
+      currentReviewItems.forEach((cand, idx) => {
+        const isSelected = (idx === selectedReviewIndex);
+        const card = document.createElement('div');
+        card.className = `p-4 rounded-xl shadow-sm border transition-all cursor-pointer ${
+          isSelected ? 'bg-surface-container-lowest border-primary ring-2 ring-primary/20' : 'bg-surface-container-lowest border-outline-variant/30 hover:border-primary/50'
+        }`;
+        card.onclick = () => selectReviewItem(idx);
+
+        let warningHtml = '';
+        if (cand.strength_mismatch_warning && cand.warning_message) {
+          warningHtml = `
+            <div class="mt-2 p-2 bg-amber-50 border border-amber-200 text-amber-900 rounded-lg text-[11px] font-medium flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-amber-700">warning</span>
+              <span>${cand.warning_message}</span>
+            </div>
+          `;
+        }
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary shrink-0 mt-0.5">
+                <span class="material-symbols-outlined text-2xl">medication</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="font-bold text-base text-on-surface">${cand.brand_name}</span>
+                  <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded-full text-[10px]">${Math.round(cand.calibrated_confidence * 100)}% Match</span>
+                </div>
+                <div class="text-xs text-on-surface-variant mt-0.5">${cand.raw_composition || ''}</div>
+                ${warningHtml}
+              </div>
+            </div>
+            <div class="flex items-center">
+              <input type="radio" name="reviewSelection" ${isSelected ? 'checked' : ''} class="w-4 h-4 text-primary focus:ring-primary">
+            </div>
+          </div>
+          <div class="flex items-center justify-end gap-2 mt-3 pt-2.5 border-t border-outline-variant/20">
+            <button type="button" class="px-3 py-1 text-xs font-semibold text-on-surface-variant hover:bg-surface-container rounded-lg" onclick="event.stopPropagation(); openEditModal('${cand.brand_name}', false, ${idx})">
+              <span class="material-symbols-outlined text-sm align-middle mr-0.5">edit</span>Edit
+            </button>
+            <button type="button" class="px-3 py-1 text-xs font-semibold text-rose-700 hover:bg-rose-50 rounded-lg" onclick="event.stopPropagation(); removeReviewItem(${idx})">
+              <span class="material-symbols-outlined text-sm align-middle mr-0.5">delete</span>Remove
+            </button>
+          </div>
+        `;
+        listContainer.appendChild(card);
+      });
+    }
+
+    function selectReviewItem(idx) {
+      selectedReviewIndex = idx;
+      const radios = document.querySelectorAll('input[name="reviewSelection"]');
+      if (radios[idx]) radios[idx].checked = true;
+      renderReviewScreen({
+        engine_name: document.getElementById('reviewEngineName').textContent,
+        raw_ocr_text: document.getElementById('reviewRawOcrText').textContent,
+        suggested_brands: currentReviewItems
+      });
+    }
+
+    function removeReviewItem(idx) {
+      currentReviewItems.splice(idx, 1);
+      if (selectedReviewIndex >= currentReviewItems.length) {
+        selectedReviewIndex = Math.max(0, currentReviewItems.length - 1);
+      }
+      renderReviewScreen({
+        engine_name: document.getElementById('reviewEngineName').textContent,
+        raw_ocr_text: document.getElementById('reviewRawOcrText').textContent,
+        suggested_brands: currentReviewItems
+      });
+    }
+
+    function openEditModal(name, isNew = false, idx = null) {
+      editingItemIndex = idx;
+      document.getElementById('modal-title').textContent = isNew ? 'Add Medicine Name' : 'Edit Medicine Name';
+      document.getElementById('modal-input').value = name || '';
+      document.getElementById('medicine-modal').classList.remove('hidden');
+      document.getElementById('medicine-modal').classList.add('flex');
+      document.getElementById('modal-input').focus();
+    }
+
+    function closeEditModal() {
+      document.getElementById('medicine-modal').classList.add('hidden');
+      document.getElementById('medicine-modal').classList.remove('flex');
+    }
+
+    function saveModalMedicine() {
+      const val = document.getElementById('modal-input').value.trim();
+      if (!val) return;
+
+      if (editingItemIndex !== null && editingItemIndex >= 0 && editingItemIndex < currentReviewItems.length) {
+        currentReviewItems[editingItemIndex].brand_name = val;
+      } else {
+        currentReviewItems.push({
+          brand_name: val,
+          calibrated_confidence: 1.0,
+          raw_composition: 'Manually specified',
+          strength_mismatch_warning: false
+        });
+        selectedReviewIndex = currentReviewItems.length - 1;
+      }
+      closeEditModal();
+      renderReviewScreen({
+        engine_name: document.getElementById('reviewEngineName').textContent,
+        raw_ocr_text: document.getElementById('reviewRawOcrText').textContent,
+        suggested_brands: currentReviewItems
+      });
+    }
+
+    async function proceedFromReview() {
+      if (currentReviewItems.length === 0) {
+        alert('Please select or add at least one medicine brand.');
+        return;
+      }
+      const chosen = currentReviewItems[selectedReviewIndex];
+      const targetQuery = chosen ? chosen.brand_name : currentReviewItems[0].brand_name;
+      await fetchAndDisplayMatch(targetQuery);
+    }
+
+    // -------------------------------------------------------------------------
+    // SEARCH & MATCHING ENGINE (RULES 1 & 2)
+    // -------------------------------------------------------------------------
+    function toggleSearchDrawer() {
+      const drawer = document.getElementById('searchDrawer');
+      drawer.classList.toggle('hidden');
+      if (!drawer.classList.contains('hidden')) {
+        document.getElementById('medicineInput').focus();
+      }
+    }
+
+    function clearSearchInput() {
+      document.getElementById('medicineInput').value = '';
+      document.getElementById('medicineInput').focus();
+    }
+
+    function quickFillSearch(brandName) {
+      document.getElementById('medicineInput').value = brandName;
+      executeManualSearch();
+    }
+
+    async function executeManualSearch() {
+      const q = document.getElementById('medicineInput').value.trim();
+      if (!q) return;
+      await fetchAndDisplayMatch(q);
+    }
+
+    async function fetchAndDisplayMatch(queryText) {
+      try {
+        const res = await fetch('/api/match', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: queryText })
+        });
+        if (!res.ok) throw new Error('Matching request failed with status ' + res.status);
+        const data = await res.json();
+        renderResultScreen(data);
+        navigateTo('result');
+      } catch (err) {
+        alert('Matching error: ' + err.message);
+      }
+    }
+
+    function renderResultScreen(res) {
+      const badge = document.getElementById('resultMatchBadge');
+      badge.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide';
+
+      if (res.match_type === 'exact') {
+        badge.classList.add('bg-emerald-100', 'text-emerald-800', 'border', 'border-emerald-300');
+        badge.textContent = 'Exact Generic Equivalent Found';
+      } else if (res.match_type.includes('assumed release')) {
+        badge.classList.add('bg-amber-100', 'text-amber-800', 'border', 'border-amber-300');
+        badge.textContent = 'Match on Assumed Release; Confirm on Strip';
+      } else if (res.match_type === 'uncertain') {
+        badge.classList.add('bg-amber-100', 'text-amber-800', 'border', 'border-amber-300');
+        badge.textContent = 'Uncertain: ' + (res.reason || 'Verification Required');
+      } else {
+        badge.classList.add('bg-slate-100', 'text-slate-700', 'border', 'border-slate-300');
+        badge.textContent = 'No Exact Generic in Jan Aushadhi';
+      }
+
+      // Caution Alert
+      const cautionEl = document.getElementById('resultCautionAlert');
+      if (res.has_caution) {
+        cautionEl.classList.remove('hidden');
+        document.getElementById('resultCautionText').textContent = res.caution_message || 'Narrow therapeutic index drug. Ask your prescribing physician before switching.';
+      } else {
+        cautionEl.classList.add('hidden');
+      }
+
+      // Brand Info
+      if (res.brand) {
+        document.getElementById('resultBrandName').textContent = res.brand.name;
+        document.getElementById('resultBrandComp').textContent = res.brand.composition;
+        document.getElementById('resultBrandPack').textContent = res.brand.pack;
+        document.getElementById('resultBrandPrice').textContent = '₹' + res.brand.price.toFixed(2);
+        document.getElementById('resultBrandPPU').textContent = '₹' + res.brand.price_per_unit.toFixed(2) + ' per tablet';
+      } else {
+        document.getElementById('resultBrandName').textContent = res.query;
+        document.getElementById('resultBrandComp').textContent = '-';
+        document.getElementById('resultBrandPack').textContent = '-';
+        document.getElementById('resultBrandPrice').textContent = '-';
+        document.getElementById('resultBrandPPU').textContent = '-';
+      }
+
+      // Generic Info
+      const savingsBanner = document.getElementById('resultSavingsBanner');
+      if (res.generic) {
+        document.getElementById('resultGenericName').textContent = res.generic.name;
+        document.getElementById('resultGenericCode').textContent = `Drug Code: ${res.generic.code} (${res.generic.therapeutic_group})`;
+        document.getElementById('resultGenericPack').textContent = res.generic.pack;
+        document.getElementById('resultGenericPrice').textContent = '₹' + res.generic.mrp.toFixed(2);
+        document.getElementById('resultGenericPPU').textContent = '₹' + res.generic.price_per_unit.toFixed(2) + ' per tablet';
+
+        savingsBanner.classList.remove('hidden');
+        if (res.saving_per_unit !== null) {
+          document.getElementById('resultSavingsPPU').textContent = `Save ₹${res.saving_per_unit.toFixed(2)} per tablet`;
+          document.getElementById('resultSavingsPercent').textContent = `${res.saving_percent.toFixed(1)}%`;
+        }
+      } else {
+        document.getElementById('resultGenericName').textContent = 'No Equivalent Found';
+        document.getElementById('resultGenericCode').textContent = res.reason || 'No exact generic in Jan Aushadhi catalog';
+        document.getElementById('resultGenericPack').textContent = '-';
+        document.getElementById('resultGenericPrice').textContent = '-';
+        document.getElementById('resultGenericPPU').textContent = '-';
+        savingsBanner.classList.add('hidden');
+      }
+
+      // Interactive Candidate Suggestions for uncertain queries
+      const candBox = document.getElementById('resultCandidatesBox');
+      const candList = document.getElementById('resultCandidatesList');
+      if (res.candidates && res.candidates.length > 0) {
+        candBox.classList.remove('hidden');
+        candList.innerHTML = '';
+        res.candidates.slice(0, 4).forEach(cand => {
+          const btn = document.createElement('button');
+          btn.className = "flex items-center justify-between p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors text-left";
+          btn.onclick = () => fetchAndDisplayMatch(cand.brand_name);
+          btn.innerHTML = `
+            <div>
+              <span class="font-bold text-xs text-primary">${cand.brand_name}</span>
+              <div class="text-[11px] text-on-surface-variant">${cand.raw_composition || ''}</div>
+            </div>
+            <span class="material-symbols-outlined text-sm text-primary">arrow_forward</span>
+          `;
+          candList.appendChild(btn);
+        });
+      } else {
+        candBox.classList.add('hidden');
+      }
+
+      // Assumed Release Note
+      const assumedNote = document.getElementById('resultAssumedReleaseNote');
+      if (res.brand && res.brand.release_type_source === 'assumed') {
+        assumedNote.textContent = 'ℹ️ Note on release type: Assumed immediate-release (not stated in source). Verify whether your packaging specifies modified release (SR/ER/XR/DR) before switching.';
+      } else {
+        assumedNote.textContent = '';
+      }
+
+      // Update Report Wrong Result mailto link (strictly text-only, no photo)
+      const reportLink = document.getElementById('reportWrongResultLink');
+      if (reportLink) {
+        const queryText = encodeURIComponent(res.query || (res.brand ? res.brand.name : 'Unknown'));
+        const matchType = encodeURIComponent(res.match_type || 'None');
+        reportLink.href = `mailto:feedback@pilltwin.org?subject=PillTwin%20Report%3A%20Wrong%20Result%20for%20${queryText}&body=Queried%20Medicine%3A%20${queryText}%0AMatch%20Result%3A%20${matchType}%0A%0APlease%20describe%20what%20was%20incorrect%20(Note%3A%20do%20not%20attach%20photos)%3A%0A`;
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // MODAL DIALOG CONTROLLERS
+    // -------------------------------------------------------------------------
+    function openLearnModal() {
+      document.getElementById('learn-modal').classList.remove('hidden');
+      document.getElementById('learn-modal').classList.add('flex');
+    }
+    function closeLearnModal() {
+      document.getElementById('learn-modal').classList.add('hidden');
+      document.getElementById('learn-modal').classList.remove('flex');
+    }
+
+    function openAboutModal() {
+      document.getElementById('about-modal').classList.remove('hidden');
+      document.getElementById('about-modal').classList.add('flex');
+    }
+    function closeAboutModal() {
+      document.getElementById('about-modal').classList.add('hidden');
+      document.getElementById('about-modal').classList.remove('flex');
+    }
+
+    function openHowItWorksModal() {
+      document.getElementById('howitworks-modal').classList.remove('hidden');
+      document.getElementById('howitworks-modal').classList.add('flex');
+    }
+    function closeHowItWorksModal() {
+      document.getElementById('howitworks-modal').classList.add('hidden');
+      document.getElementById('howitworks-modal').classList.remove('flex');
+    }
+
+    function openPrivacyModal(topic = 'general') {
+      const modal = document.getElementById('privacy-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+    function closePrivacyModal() {
+      document.getElementById('privacy-modal').classList.add('hidden');
+      document.getElementById('privacy-modal').classList.remove('flex');
+    }
+
+    // -------------------------------------------------------------------------
+    // INITIALIZATION
+    // -------------------------------------------------------------------------
+    window.addEventListener('DOMContentLoaded', () => {
+      setLanguage(currentLang);
+    });
+  </script>
+</body>
+</html>

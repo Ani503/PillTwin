@@ -1,0 +1,141 @@
+# NEEDS PHARMACIST REVIEW
+# ==============================================================================
+# PillTwin Caution Drugs Configuration
+# First-draft list of medicines where product or brand switching should be
+# doctor-supervised due to Narrow Therapeutic Index (NTI) or critical
+# bioavailability/bioequivalence considerations.
+#
+# Rule 5: Information only, not medical advice. Ask your doctor or pharmacist
+# before changing any medicine.
+# ==============================================================================
+
+version: "1.0.0"
+last_updated: "2026-11-19"
+disclaimer: "Information only, not medical advice. Ask your doctor or pharmacist before changing any medicine."
+
+caution_drugs:
+  - id: "levothyroxine"
+    canonical_name: "levothyroxine"
+    category: "Thyroid Hormone"
+    reason: "Narrow therapeutic index; small variations in systemic bioavailability can cause subclinical hypo- or hyperthyroidism."
+    caution_message: "Switching products requires doctor supervision and monitoring of serum TSH levels."
+    synonyms:
+      - "levothyroxine"
+      - "levothyroxine sodium"
+      - "l-thyroxine"
+      - "thyroxine sodium"
+
+  - id: "warfarin"
+    canonical_name: "warfarin"
+    category: "Oral Anticoagulant"
+    reason: "Narrow therapeutic index; minor changes in absorption or potency can lead to serious thrombosis or major bleeding complications."
+    caution_message: "Switching products requires doctor supervision and INR (International Normalised Ratio) monitoring."
+    synonyms:
+      - "warfarin"
+      - "warfarin sodium"
+
+  - id: "phenytoin"
+    canonical_name: "phenytoin"
+    category: "Antiepileptic / Anticonvulsant"
+    reason: "Non-linear (zero-order) pharmacokinetics; small changes in dose or formulation bioavailability produce dramatic changes in plasma concentration."
+    caution_message: "Switching products requires doctor supervision and serum drug level monitoring to prevent seizure recurrence or toxicity."
+    synonyms:
+      - "phenytoin"
+      - "phenytoin sodium"
+
+  - id: "carbamazepine"
+    canonical_name: "carbamazepine"
+    category: "Antiepileptic / Mood Stabilizer"
+    reason: "Narrow therapeutic window and variable dissolution kinetics across manufacturers."
+    caution_message: "Switching products requires doctor supervision and plasma concentration monitoring."
+    synonyms:
+      - "carbamazepine"
+
+  - id: "sodium_valproate"
+    canonical_name: "sodium valproate"
+    category: "Antiepileptic / Mood Stabilizer"
+    reason: "Formulation and release-rate differences can impact steady-state seizure control and gastrointestinal tolerance."
+    caution_message: "Switching products requires doctor supervision."
+    synonyms:
+      - "sodium valproate"
+      - "valproic acid"
+      - "divalproex sodium"
+      - "divalproex"
+
+  - id: "lamotrigine"
+    canonical_name: "lamotrigine"
+    category: "Antiepileptic"
+    reason: "Bioavailability differences may alter seizure threshold or increase risk of cutaneous adverse reactions."
+    caution_message: "Switching products requires doctor supervision."
+    synonyms:
+      - "lamotrigine"
+
+  - id: "levetiracetam"
+    canonical_name: "levetiracetam"
+    category: "Antiepileptic"
+    reason: "Critical maintenance therapy for epilepsy where sudden bioequivalence variance could risk breakthrough seizures."
+    caution_message: "Switching products requires doctor supervision."
+    synonyms:
+      - "levetiracetam"
+
+  - id: "topiramate"
+    canonical_name: "topiramate"
+    category: "Antiepileptic"
+    reason: "Critical anti-seizure prophylaxis; switching formulations should be clinically evaluated."
+    caution_message: "Switching products requires doctor supervision."
+    synonyms:
+      - "topiramate"
+
+  - id: "ciclosporin"
+    canonical_name: "ciclosporin"
+    category: "Immunosuppressant"
+    reason: "Narrow therapeutic index; subtherapeutic levels risk organ transplant rejection, while supratherapeutic levels cause severe nephrotoxicity."
+    caution_message: "Switching products requires doctor supervision and therapeutic drug monitoring (trough blood levels)."
+    synonyms:
+      - "ciclosporin"
+      - "cyclosporine"
+      - "cyclosporin a"
+
+  - id: "tacrolimus"
+    canonical_name: "tacrolimus"
+    category: "Immunosuppressant"
+    reason: "Narrow therapeutic index and critical concentration-dependent prevention of allograft rejection."
+    caution_message: "Switching products requires doctor supervision and therapeutic blood concentration monitoring."
+    synonyms:
+      - "tacrolimus"
+
+  - id: "digoxin"
+    canonical_name: "digoxin"
+    category: "Cardiac Glycoside"
+    reason: "Narrow therapeutic index; toxic serum concentrations overlap with therapeutic ranges, risking life-threatening arrhythmias."
+    caution_message: "Switching products requires doctor supervision and serum digoxin monitoring."
+    synonyms:
+      - "digoxin"
+
+  - id: "lithium"
+    canonical_name: "lithium"
+    category: "Mood Stabilizer"
+    reason: "Narrow therapeutic index; toxicity can develop rapidly with minor changes in renal clearance or formulation absorption."
+    caution_message: "Switching products requires doctor supervision and regular serum lithium level monitoring."
+    synonyms:
+      - "lithium"
+      - "lithium carbonate"
+      - "lithium citrate"
+
+  - id: "theophylline"
+    canonical_name: "theophylline"
+    category: "Bronchodilator (Methylxanthine)"
+    reason: "Narrow therapeutic index; toxicity risks cardiac arrhythmias and seizures."
+    caution_message: "Switching products requires doctor supervision and serum theophylline monitoring."
+    synonyms:
+      - "theophylline"
+      - "aminophylline"
+
+  - id: "amiodarone"
+    canonical_name: "amiodarone"
+    category: "Antiarrhythmic"
+    reason: "Complex pharmacokinetics with prolonged elimination half-life and narrow therapeutic index."
+    caution_message: "Switching products requires doctor supervision and cardiac monitoring."
+    synonyms:
+      - "amiodarone"
+      - "amiodarone hydrochloride"

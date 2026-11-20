@@ -1,0 +1,27 @@
+# Python virtual environment & secrets
+.venv/
+.env
+.env.*
+
+# Python bytecode & caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# OS metadata
+.DS_Store
+
+# Raw data, PDFs, photos, and truth files
+data/raw/
+data/photos/
+photos/
+*.pdf
+data/*.pdf
+data/photos_truth.csv
+data/Indian-Medicine-Dataset*
+
+# Feedback files
+*feedback*
+feedback*

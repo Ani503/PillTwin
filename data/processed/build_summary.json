@@ -1,0 +1,17 @@
+{
+  "build_timestamp": "2026-11-20T00:30:00",
+  "pmbjp_total_raw_rows": 2439,
+  "pmbjp_clean_solid_oral_count": 1166,
+  "pmbjp_unique_canonical_keys": 1164,
+  "price_list_export_date": "2026-11-07",
+  "price_list_date_source": "PDF creation date; official effective date not stated",
+  "data_download_date": "2026-11-19",
+  "price_list_date": "2026-11-07",
+  "data_age_note": "Brand prices are from a historical snapshot (commit d584adf) and may be outdated. Generic prices reflect the PMBJP price list exported on 2026-11-07. All savings are indicative information, not real-time quotes or medical advice.",
+  "brand_total_raw_rows": 253973,
+  "brand_clean_solid_oral_count": 171567,
+  "brand_with_exact_pmbjp_match": 90955,
+  "brand_exact_match_share": 0.5301427430683057,
+  "brand_caution_drug_count": 2842,
+  "pmbjp_caution_drug_count": 47
+}

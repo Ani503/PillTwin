@@ -1,0 +1,36 @@
+{
+  "model_type": "platt_scaling_logistic",
+  "intercept": -6.269643783569336,
+  "coef": 9.403839111328125,
+  "abstention_threshold": 0.95,
+  "metrics": {
+    "Raw Cosine Similarity": {
+      "brier_score": 0.14303,
+      "log_loss": 0.4583,
+      "roc_auc": 0.9133
+    },
+    "kNN-style Mean Similarity": {
+      "brier_score": 0.15616,
+      "log_loss": 0.4887,
+      "roc_auc": 0.8656
+    },
+    "Platt Scaling (Logistic)": {
+      "brier_score": 0.10656,
+      "log_loss": 0.3538,
+      "roc_auc": 0.9124
+    },
+    "Isotonic Regression": {
+      "brier_score": 0.10529,
+      "log_loss": 0.3562,
+      "roc_auc": 0.9074
+    }
+  },
+  "vectorizer_config": {
+    "analyzer": "char_wb",
+    "ngram_range": [
+      3,
+      5
+    ],
+    "min_df": 2
+  }
+}
